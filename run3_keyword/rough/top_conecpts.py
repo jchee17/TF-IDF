@@ -11,16 +11,19 @@ path_arxiv = '/home/jerry/Data/Hopper_Project/ptm_data/arxiv_processed_trunc/'
 path_wiki = '/home/jerry/Data/Hopper_Project/ptm_data/wiki/'
 
 # load cos dist comparisons (prev run)
-doc_comparisons = pickle.load(open('../run2_bettertfidf/rough/data_objects/doc_comparisons.p', 'r'))
+doc_comparisons = pickle.load(open('../../run2_bettertfidf/rough/data_objects/doc_comparisons.p', 'r'))
 # load tf-idf keyword scores (this run)
 tfidf_arxiv = pickle.load(open('./data_objects/tfidf_arxiv_caseinsen.p', 'r'))
+# load tfidf keyword scores, regex improvements
+tfidf_arxiv_re = pickle.load(open('./data_objects/tfidf_arxiv_re.p', 'r'))
+
 
 # load sep concept lists
 numTh = pickle.load(open('./data_objects/numberTheory-concepts.p', 'r'))
 opt = pickle.load(open('./data_objects/opt-concepts.p', 'r'))
 prob = pickle.load(open('./data_objects/prob-concepts.p', 'r'))
 stat = pickle.load(open('./data_objects/stat-concepts.p', 'r'))
-
+#concepts = pickle.load(open('./data_objects/master-concepts.p', 'r'))
 # =============================================================================
 
 # function to take in a arxiv paper name and output the top k wiki concepts
@@ -33,8 +36,9 @@ def relevant_concepts(arxiv_doc, dictionary, k):
         sorted_words = sorted(scores.items(), 
                 key=lambda x : x[1], reverse = True)
         for concept, score in sorted_words[:k]:
-            print("\tConcept: {} ({})".format(concept, 
-                concept_member(concept)))
+            print("\tConcept: {}".format(concept))
+            #print("\tConcept: {} ({})".format(concept, 
+                #concept_member(concept)))
             #print("\tConcept: {}, score: {}".format(concept, 
                 #round(score, 5)))
     
@@ -87,6 +91,8 @@ while(1):
     if i not in indices_old:
         print("Input not in range. Please try again.\n")
     else:
+        print("regex improved keyword tf-idf score")
+        relevant_concepts(articles_old[i], tfidf_arxiv_re, 5)
         print("keyword tf-idf score")
         relevant_concepts(articles_old[i], tfidf_arxiv, 5)
         print("")

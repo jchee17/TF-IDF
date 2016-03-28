@@ -42,3 +42,9 @@ if (check_exist("tfidf_arxiv.p", path_save) == False):
     print("computing tf-idf scores")
     compute_tfidf(path_arxiv, path_save, arxiv_sep_byfile,
             arxiv_sep_byword, arxiv_wordsindoc)
+
+# generate okapi scores
+if (check_exist("okapi_arxiv.p", path_save) == False):
+    print("computing okapi scores")
+    compute_okapi(path_save, arxiv_sep_byfile,
+            arxiv_sep_byword, arxiv_wordsindoc)

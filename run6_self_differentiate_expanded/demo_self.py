@@ -87,16 +87,17 @@ k = 10
 while(1):
     i = raw_input("Enter an integer from 0 to {} to access one of the articles.\n".format(len(list_wiki)))
     i = int(i)
+    show_doc_inbrowser(list_wiki[i])
+    
     print("phrases: cosine distance tf-idf self differentiate wiki")
     relevant_concepts(self_diff, tfidf_wiki, tfidf_wiki, list_wiki, list_wiki, list_vocab, i, k)
     
-    print("reverse phrases:")
-    relevant_concepts_reverse(self_diff, tfidf_wiki, tfidf_wiki, list_wiki, list_wiki, list_vocab, i, k)
+    #print("reverse phrases:")
+    #relevant_concepts_reverse(self_diff, tfidf_wiki, tfidf_wiki, list_wiki, list_wiki, list_vocab, i, k)
 
     
     #print("phrases: cosine distance tf-idf self differentiate wiki [stopwords]")
     #relevant_concepts(self_diff_stopwords, tfidf_wiki, tfidf_wiki, list_wiki, list_wiki, list_vocab, i, k)
     
-    show_doc_inbrowser(list_wiki[i])
     print('\n')
 

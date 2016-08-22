@@ -13,6 +13,8 @@ from nltk import RegexpTokenizer
 
 def gen_list_corpus(path_corpus):
     print("\ngen_list_corpus:{}:".format(path_corpus))
+    """ prints all files in given path, 
+        except for files that begin with (.)"""
     list_corpus = []
     for fname in os.listdir(path_corpus):
         if not fname.startswith('.'):
